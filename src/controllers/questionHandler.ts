@@ -1,26 +1,24 @@
 import express from "express";
-import { askQuestion, askQuestionWithChain  } from "../ai/controllers/askQuestion";
+import { askQuestionWithChain  } from "../ai/controllers/askQuestion";
+import { askQuestion } from "../ai/controllers/questionController";
 
 export async function questionHandler(
   req: express.Request,
   res: express.Response
 ) {
-    // console.log("Req: ", req)
-    console.log("Body: ",req.body)
-    
-    try {
-        const { question } = req.body;
+console.log("Body: ", req.body);
 
-      console.log("Question: ", question);
-        //   const response = await askQuestion(question);
-      const response = await askQuestionWithChain(question);
-      console.log("Response: ", response);
-    
-      return res.json(response);
-        
-    } catch (e:any) {
-        console.log(e);
-        return res.status(500).json({ error: e.message });
-    }
+try {
+  const { question, id } = req.body;
+
+  console.log("Question: ", question);
+  const response = await askQuestion(question, id);
+  console.log("Response: ", response);
+
+  return res.json(response);
+} catch (e: any) {
+  console.log(e);
+  return res.status(500).json({ error: e.message });
+}
 
 }
