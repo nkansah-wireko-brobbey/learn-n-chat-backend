@@ -19,9 +19,14 @@ app.use(express.json());
 
 app.use(router());
 
+//implement error handling
+app.use((err: any, req: any, res: any, next: any) => {
+  res.status(500).json({ error: err.message });
+});
+
 const initializeApp = async () => {
     
-    await aiConfig.defineConverstationChain();
+    // await aiConfig.defineConverstationChain();
     
     const PORT = process.env.PORT || 5000;
     
