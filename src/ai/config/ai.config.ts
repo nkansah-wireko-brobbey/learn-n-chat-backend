@@ -1,6 +1,6 @@
 import { ChatOllama } from "@langchain/community/chat_models/ollama";
 import { OllamaEmbeddings } from "@langchain/community/embeddings/ollama";
-import { PuppeteerWebBaseLoader } from "@langchain/community/document_loaders/web/puppeteer";
+import { CheerioWebBaseLoader } from "@langchain/community/document_loaders/web/cheerio";
 
 import {
   ChatPromptTemplate,
@@ -29,7 +29,7 @@ const defineEmbeddings = () => {
 };
 
 const defineVectorStore = async () => {
-  const loader = new PuppeteerWebBaseLoader(
+  const loader = new CheerioWebBaseLoader(
     "https://tihalt.com/examples-of-static-websites/"
   );
   // const loader = new PuppeteerWebBaseLoader(
