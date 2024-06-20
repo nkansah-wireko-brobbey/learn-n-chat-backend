@@ -1,6 +1,6 @@
 import { ChatGroq } from "@langchain/groq";
 import { FireworksEmbeddings } from "@langchain/community/embeddings/fireworks";
-import { PuppeteerWebBaseLoader } from "@langchain/community/document_loaders/web/puppeteer";
+import { CheerioWebBaseLoader } from "@langchain/community/document_loaders/web/cheerio";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { OllamaEmbeddings } from "@langchain/community/embeddings/ollama";
@@ -29,7 +29,7 @@ export const createEmbeddings = () => {
 };
 
 export const createResource = async (url: string) => {
-  const loader = new PuppeteerWebBaseLoader(url);
+  const loader = new CheerioWebBaseLoader(url);
 
   const docs = await loader.load();
 
